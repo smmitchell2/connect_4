@@ -50,6 +50,29 @@ def choice2(colNum,board):
         rowNum = rowNum - 1
     return board
 
+def checkDiagnol(board):
+    winner = False
+
+    return winner
+
+def checkVertical(board):
+    winner = False
+
+    return winner
+
+def checkHorizontal(board):
+    winner = False
+    
+    return winner
+
+def isGameOver(board):
+    winner = False
+    if checkDiagnol(board):
+        return True
+    if checkVertical(board):
+        return True
+    if checkHorizontal(board):
+        return true
 
 def main():
     play = True
@@ -59,13 +82,18 @@ def main():
     m = createBoard()
     printBoard(m)
     while play == True:
-
         print()
         colNum = int(input("Player 1 choose a row "))
+        if colNum > 6:
+            print ("Out of range choose number from 0-6")
+            colNum = int(input("Which row? "))
         m = choice1(colNum,m)
         printBoard(m)
         print()
         colNum = int(input("Player 2 choose a row "))
+        if colNum > 6:
+            print ("Out of range choose number from 0-6")
+            colNum = int(input("Which row? "))
         m = choice2(colNum,m)
         printBoard(m)
 
