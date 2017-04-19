@@ -52,26 +52,45 @@ def choice2(colNum,board):
 
 def checkDiagnol(board):
     winner = False
+    for row in range(3):
+        for col in range(4):
+            if (board[row][col] == board[row + 1][col + 1] == board[row + 2][col + 2] == board[row + 3][col + 3]) and (board[row][col] != " "):
+                winner = True
+                return winner
+
+    for row in range(5, 2, -1):
+        for col in range(3):
+            if (board[row][col] == board[row - 1][col + 1] == board[row - 2][col + 2] == board[row - 3][col + 3]) and (board[row][col] != " "):
+                winner = True
+                return winner
 
     return winner
 
 def checkVertical(board):
     winner = False
-
+    for col in range(6):
+        for row in range(3):
+            if (board[row][col] == board[row + 1][col] == board[row + 2][col] == board[row + 3][col]) and (board[row][col] != " "):
+                winner = True
+                return winner
     return winner
 
 def checkHorizontal(board):
     winner = False
-    
+    for row in range(6):
+        for col in range(3):
+            if (board[row][col] == board[row][col + 1] == board[row][col + 2] == board[row][col + 3]) and (board[row][col] != " "):
+                    winner = True
+                    return winner
     return winner
 
 def isGameOver(board):
     winner = False
-    if checkDiagnol(board):
+    if checkDiagnol(board) == True:
         return True
-    if checkVertical(board):
+    if checkVertical(board) == True:
         return True
-    if checkHorizontal(board):
+    if checkHorizontal(board) == True:
         return True
 
 def main():
@@ -82,12 +101,18 @@ def main():
     m = createBoard()
     printBoard(m)
     while play == True:
+        winner = False
         print()
         colNum = int(input("Player 1 choose a row "))
         if colNum > 6:
             print ("Out of range choose number from 0-6")
             colNum = int(input("Which row? "))
         m = choice1(colNum,m)
+        winner = isGameOver(m)
+        if winner == True:
+            print("Player 1 is the winner")
+            printBoard(m)
+            break
         printBoard(m)
         print()
         colNum = int(input("Player 2 choose a row "))
@@ -95,6 +120,11 @@ def main():
             print ("Out of range choose number from 0-6")
             colNum = int(input("Which row? "))
         m = choice2(colNum,m)
+        winner = isGameOver(m)
+        if winner == True:
+            print("Player 2 is the winner")
+            printBoard(m)
+            break
         printBoard(m)
 
 main()
