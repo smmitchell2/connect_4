@@ -72,7 +72,7 @@ def isGameOver(board):
     if checkVertical(board):
         return True
     if checkHorizontal(board):
-        return true
+        return True
 
 def main():
     play = True
